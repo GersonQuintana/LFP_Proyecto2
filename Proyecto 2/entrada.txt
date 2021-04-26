@@ -26,26 +26,64 @@ Gramatica3
 S,A,B;a,b;S
 B-> 	a B B
 A-> a
-A->aS
+A->a S
 B->b	
-S->aB
+S->a B
 A->	b A A
 
 B->bS
 S->bA
-
-
-
-
 *
+
 
 Gramatica4
 S;a,b,c;S
 B-> a S a
 A-> b S b
 A->c
+*
+
+Gramatica5
+S,M,N; a,b,z;S
+S -> z M N z
+M -> a M a
+M -> z
+N -> b N b
+N -> z
+*
 
 
 
+Gramatica6
+S,M,N; a,b,z;S
+S -> z B z
+S -> b A
+A -> a
+A -> a a A
+B -> b
+B -> b S
+B -> a B
+*
 
+Gramatica7
+S,A,B;a,b;S
+S -> a B
+S -> b A
+A -> a
+A -> a S
+A -> b A A
+B -> b
+B -> b S
+B -> a B B
+*
+
+Gramatica8
+S,A,B;a,b;S
+S -> a B a
+S -> b A
+A -> a
+A -> a A
+B -> b
+B -> b S
+B -> a B
 *

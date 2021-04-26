@@ -6,6 +6,7 @@ class Gramatica:
         self.NoTerminalInicial = NoTerminalInicial
         self.listaProducciones = listaProducciones
 
+
 class Nodo:
     def __init__(self, gramatica=None, siguiente=None):
         self.gramatica = gramatica
