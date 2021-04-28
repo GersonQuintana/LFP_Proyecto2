@@ -59,7 +59,6 @@ class Graphviz:
         f.attr('node', shape='circle')
         f.node('i', fontsize='30')
         f.node('p', fontsize='30')
-        f.node('q', fontsize='30')
         f.attr('node', shape='doublecircle')
         f.node('f', fontsize='30')
         f.attr('node', shape='circle')

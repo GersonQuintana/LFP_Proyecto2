@@ -31,14 +31,16 @@ B->b
 S->a B
 A->	b A A
 
-B->bS
-S->bA
+B->b S
+S->b A
 *
 
 
 Gramatica4
-S;a,b,c;S
-B-> a S a
+S, A, B;a,b,c;S
+S -> A B
+B -> a S a
+B -> a
 A-> b S b
 A->c
 *
@@ -46,16 +48,17 @@ A->c
 Gramatica5
 S,M,N; a,b,z;S
 S -> z M N z
-M -> a M a
 M -> z
-N -> b N b
+M -> a M a
 N -> z
+N -> b N b
+
 *
 
 
 
 Gramatica6
-S,M,N; a,b,z;S
+S,A,B; a,b,z;S
 S -> z B z
 S -> b A
 A -> a
@@ -86,4 +89,69 @@ A -> a A
 B -> b
 B -> b S
 B -> a B
+*
+
+Gramatica9
+S,A, B; a, b,z;S
+S -> z A B z
+A -> a A a
+A -> z
+B -> b B b
+B -> z
+*
+
+Gramatica10
+S,A,B;1,0;S
+S -> 1 A 1
+A -> 1 A
+A -> 0
+A -> 0 B
+B -> 0 B
+B -> 0
+*
+
+Gramatica11
+S,A,B;1,0;S
+S -> A 1 A
+A -> 0 B
+B -> 0 B
+B -> 0
+*
+
+Gramatica12
+S,A,B;a,b;S
+S -> a S b
+S -> b A a
+A -> b A
+A -> b
+*
+
+Gramatica13
+S,A,B; a,b,c;S
+S -> A
+S -> B
+A -> a A c c
+A -> b B c c
+A -> λ
+B -> b B c c
+B -> λ
+*
+
+Gramatica14
+S,A,B; a,b; S
+S -> a B
+S -> b A
+A -> a
+A -> a a A
+B -> b
+B -> b S
+B -> a B
+*
+
+Gramatica15
+S, A, B; a,b; S
+S -> A
+A -> a B
+B -> b B b
+B -> b
 *

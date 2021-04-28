@@ -105,10 +105,10 @@ while opcion != 6:
             analizar_archivo.analizar_file()                                        # Analizando el archivo
             gramaticas_no_cargadas = analizar_archivo.getGramaticas_no_cargadas()
 
-            if gramaticas_no_cargadas != 0:
-                opcion = input("> Algunas gramáticas no se cargaron.¿Desea ver el reporte? (s/n): ")
-                if opcion.lower() == "s":
-                    os.system("reportes\\Reporte.html")
+            # if gramaticas_no_cargadas != 0:
+            #     opcion = input("> Algunas gramáticas no se cargaron.¿Desea ver el reporte? (s/n): ")
+            #     if opcion.lower() == "s":
+            #         os.system("reportes\\Reporte.html")
         
         else:
             print("\n---------------------------------------------------------------")
@@ -238,8 +238,8 @@ while opcion != 6:
     
     elif opcion == 4:
         #cadena = input("Ingrese una cadena: ")
-        cadena = "zaazaazz"
-        gramatica = analizar_archivo.obtener_objeto_gramatica("Gramatica5")  # Retorna el objeto 'gramatica'
+        cadena = "bcabacaa"
+        gramatica = analizar_archivo.obtener_objeto_gramatica("Gramatica4")  # Retorna el objeto 'gramatica'
         grafo = Graphviz.Graphviz(gramatica)    
         grafo.generar_funciones()
         grafo.generar_grafo(False)
@@ -253,4 +253,18 @@ while opcion != 6:
         print("Terminales: ", terminales)
         print("No terminales: ", no_terminales)
 
-        Automata_de_Pila.analizar_Cadena(0, cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
+        Automata_de_Pila.analizar_Cadena(cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
+
+
+
+""" 
+zazabzbz con Gramatica5
+abbbaa con Gramatica7
+abbbab con Gramatica12
+0001000 con Gramatica11
+zaazaabbzbbz con Gramatica11
+abzba con Grm1
+aabbcccccccc con Gramatica13
+baaaba con Gramatica14 -> No aceptada
+bcabacaa -> Gramatica4
+""" 
