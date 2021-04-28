@@ -238,8 +238,8 @@ while opcion != 6:
     
     elif opcion == 4:
         #cadena = input("Ingrese una cadena: ")
-        cadena = "bcabacaa"
-        gramatica = analizar_archivo.obtener_objeto_gramatica("Gramatica4")  # Retorna el objeto 'gramatica'
+        cadena = "baaa"
+        gramatica = analizar_archivo.obtener_objeto_gramatica("Gramatica14")  # Retorna el objeto 'gramatica'
         grafo = Graphviz.Graphviz(gramatica)    
         grafo.generar_funciones()
         grafo.generar_grafo(False)
