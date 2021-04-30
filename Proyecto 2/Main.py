@@ -1,5 +1,7 @@
 from time import sleep
 import os
+from os import path
+from os import remove
 import Analizar_Archivo
 import Graphviz
 import Automata_de_Pila
@@ -238,7 +240,7 @@ while opcion != 6:
     
     elif opcion == 4:
         #cadena = input("Ingrese una cadena: ")
-        cadena = "abzbaa"
+        cadena = "abzba"
         gramatica = analizar_archivo.obtener_objeto_gramatica("Grm1")  # Retorna el objeto 'gramatica'
         grafo = Graphviz.Graphviz(gramatica)    
         grafo.generar_funciones()
@@ -260,8 +262,34 @@ while opcion != 6:
             file.write("\n\t<div class=\"estado\">¡La cadena ingresada es válida!</div>\n\t</body>\n</html>\n")
         else:
             file = open("reportes/Recorrido_Cadena.html", "a", encoding="UTF-8")
-            file.write("\n\t</body>\n</html>\n")
+            file.write("\n\t<div class=\"estado\">CADENA NO VÁLIDA.\nNo se encontro produccion que inicie con el caracter en lectura.</div>\n\t</body>\n</html>\n")
         file.close()
+        #os.system("reportes\\Recorrido_Cadena.html")
+    
+
+    elif opcion == 5:
+        cadena = "zazabzbz"
+        gramatica = analizar_archivo.obtener_objeto_gramatica("Gramatica5")  # Retorna el objeto 'gramatica'
+        grafo = Graphviz.Graphviz(gramatica)    
+        grafo.generar_funciones()
+        grafo.generar_grafo(False)
+        transiciones = grafo.getTransiciones()
+        no_terminal_inicial = grafo.getNoTerminalInicial()
+        terminales = grafo.getTerminales()
+        no_terminales = grafo.getNoterminales()
+
+        Automata_de_Pila.analizar_Cadena_con_tabla(grafo, cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
+
+        file = open("reportes/Reporte_Tabla.html", "a", encoding="UTF-8")
+        fin_HTML = """</tbody>
+            </thead>
+        </table>
+    </div>"""
+        file.write(fin_HTML)
+        file.close()
+
+        
+
         
 
 

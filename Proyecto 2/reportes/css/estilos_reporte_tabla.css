@@ -1,0 +1,34 @@
+.contenido {
+    width: 60%;
+    margin: 100px auto;
+}
+
+.title {
+    margin: 50px auto;
+}
+
+.title > h1 {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.table, td {
+    border: 1px solid #000;
+}
+
+.contenido > .table > thead > tr > th {
+    text-align: center;
+}
+
+.contenido > .table > tbody > tr > .centrar {
+    text-align: center;
+}
+
+.contenido > .table > tbody > tr > .derecha {
+    text-align: right;
+}
+
+.contenido > .table > tbody > tr > .izquierda {
+    text-align: left;
+}

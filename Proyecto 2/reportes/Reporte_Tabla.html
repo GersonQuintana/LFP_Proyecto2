@@ -1,0 +1,163 @@
+ <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/estilos_reporte_tabla.css">
+    </head>
+<body>
+<div class="title">
+    <h1>REPORTE EN TABLA</h1>
+</div><div class="contenido">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Iteración</th>
+                        <th>Resto de la cadena</th>
+                        <th>Pila</th>
+                        <th>Entrada</th>
+                        <th>Transiciones</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td class="centrar">0</td>
+                            <td class="centrar">zazabzbz</td>
+                            <td class="derecha">λ</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(i, λ, λ; p, #)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">1</td>
+                            <td class="centrar">zazabzbz</td>
+                            <td class="derecha">#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(p, λ, λ; q, S)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">2</td>
+                            <td class="centrar">zazabzbz</td>
+                            <td class="derecha">S#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, λ, S; q, z M N z)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">3</td>
+                            <td class="centrar">zazabzbz</td>
+                            <td class="derecha">zMNz#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, z, z; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">4</td>
+                            <td class="centrar">azabzbz</td>
+                            <td class="derecha">MNz#</td>
+                            <td class="centrar">a</td>
+                            <td class="izquierda">(q, λ, M; q, a M a)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">5</td>
+                            <td class="centrar">azabzbz</td>
+                            <td class="derecha">aMaNz#</td>
+                            <td class="centrar">a</td>
+                            <td class="izquierda">(q, a, a; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">6</td>
+                            <td class="centrar">zabzbz</td>
+                            <td class="derecha">MaNz#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, λ, M; q, z)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">7</td>
+                            <td class="centrar">zabzbz</td>
+                            <td class="derecha">zaNz#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, z, z; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">8</td>
+                            <td class="centrar">abzbz</td>
+                            <td class="derecha">aNz#</td>
+                            <td class="centrar">a</td>
+                            <td class="izquierda">(q, a, a; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">9</td>
+                            <td class="centrar">bzbz</td>
+                            <td class="derecha">Nz#</td>
+                            <td class="centrar">b</td>
+                            <td class="izquierda">(q, λ, N; q, b N b)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">10</td>
+                            <td class="centrar">bzbz</td>
+                            <td class="derecha">bNbz#</td>
+                            <td class="centrar">b</td>
+                            <td class="izquierda">(q, b, b; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">11</td>
+                            <td class="centrar">zbz</td>
+                            <td class="derecha">Nbz#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, λ, N; q, z)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">12</td>
+                            <td class="centrar">zbz</td>
+                            <td class="derecha">zbz#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, z, z; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">13</td>
+                            <td class="centrar">bz</td>
+                            <td class="derecha">bz#</td>
+                            <td class="centrar">b</td>
+                            <td class="izquierda">(q, b, b; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">14</td>
+                            <td class="centrar">z</td>
+                            <td class="derecha">z#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, z, z; q, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">15</td>
+                            <td class="centrar">λ</td>
+                            <td class="derecha">#</td>
+                            <td class="centrar">z</td>
+                            <td class="izquierda">(q, λ, #; f, λ)</td>
+                        </tr>
+                    
+                        <tr>
+                            <td class="centrar">16</td>
+                            <td class="centrar">λ</td>
+                            <td class="derecha">λ</td>
+                            <td class="centrar">λ</td>
+                            <td class="izquierda">f</td>
+                        </tr>
+                    </tbody>
+            </thead>
+        </table>
+    </div>

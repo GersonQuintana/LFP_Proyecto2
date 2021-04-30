@@ -112,7 +112,7 @@ class Graphviz:
             AE.generar_reporte(self.gramatica.nombre, alfabeto_pila, terminales, ruta_imagen)  
 
     
-    def realizarRecorrido(self, estado, entrada, pila, transicionn):
+    def realizarRecorrido(self, estado, entrada, pila, transicionn, comenzar):
 
         nombre_grafo = "AP_" + self.gramatica.nombre + str(self.count) + ".dot"
         self.count += 1
@@ -236,7 +236,7 @@ class Graphviz:
 
         ruta = "img/" + nombre_grafo
         ruta_imagen = f.render(ruta)
-        Recorrido_Cadena.realizar_iteracion(ruta_imagen, pila, entrada)
+        Recorrido_Cadena.realizar_iteracion(ruta_imagen, pila, entrada, comenzar)
 
         # if imprimir == True:
         #     AE.generar_reporte("Recorrido", alfabeto_pila, terminales, ruta_imagen)  
