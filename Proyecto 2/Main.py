@@ -238,8 +238,8 @@ while opcion != 6:
     
     elif opcion == 4:
         #cadena = input("Ingrese una cadena: ")
-        cadena = "baaa"
-        gramatica = analizar_archivo.obtener_objeto_gramatica("Gramatica14")  # Retorna el objeto 'gramatica'
+        cadena = "abzbaa"
+        gramatica = analizar_archivo.obtener_objeto_gramatica("Grm1")  # Retorna el objeto 'gramatica'
         grafo = Graphviz.Graphviz(gramatica)    
         grafo.generar_funciones()
         grafo.generar_grafo(False)
@@ -253,7 +253,16 @@ while opcion != 6:
         print("Terminales: ", terminales)
         print("No terminales: ", no_terminales)
 
-        Automata_de_Pila.analizar_Cadena(cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
+        recorrido = Automata_de_Pila.analizar_Cadena(grafo, cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
+
+        if recorrido == True:
+            file = open("reportes/Recorrido_Cadena.html", "a", encoding="UTF-8")
+            file.write("\n\t<div class=\"estado\">¡La cadena ingresada es válida!</div>\n\t</body>\n</html>\n")
+        else:
+            file = open("reportes/Recorrido_Cadena.html", "a", encoding="UTF-8")
+            file.write("\n\t</body>\n</html>\n")
+        file.close()
+        
 
 
 
@@ -262,9 +271,10 @@ zazabzbz con Gramatica5
 abbbaa con Gramatica7
 abbbab con Gramatica12
 0001000 con Gramatica11
-zaazaabbzbbz con Gramatica11
+zaazaabbzbbz con Gramatica9
 abzba con Grm1
 aabbcccccccc con Gramatica13
 baaaba con Gramatica14 -> No aceptada
 bcabacaa -> Gramatica4
+caaebeaebedgggddbh -> Gramatica17
 """ 

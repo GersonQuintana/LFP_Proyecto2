@@ -164,3 +164,18 @@ A -> B b
 B -> B a
 B -> a
 *
+
+Gramatica17
+S, A,B,C,D,E;a,b,c,d,e,f, g,h; S
+S -> C b h
+S -> D
+A -> a S C
+B -> S f 
+B -> g g g
+C -> c A
+C -> d
+C -> c C
+D -> e E
+D -> a S A B C
+E -> b e
+*
