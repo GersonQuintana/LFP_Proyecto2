@@ -42,7 +42,7 @@ class Graphviz:
             lista = ["q," + terminal + "," + terminal, "q,λ"]
             self.transisiones.append(lista)
             
-        print(self.transisiones)
+        #print(self.transisiones)
 
 
     # GENERARA UN GRAFO EN UN HTML
@@ -89,7 +89,7 @@ class Graphviz:
                 
             lista = [caracter_lectura, pop_pila, push_pila]
             self.transisiones_automata.append(lista)
-            print(caracter_lectura + ", " + pop_pila + "; " + push_pila)
+            #print(caracter_lectura + ", " + pop_pila + "; " + push_pila)
         
         print()
         #print("Los no terminales son ", etiqueta_NT)
@@ -97,7 +97,7 @@ class Graphviz:
         #print("Terminales son ", etiqueta_T)
         f.edge('q', 'q:s', label=etiqueta_T)
         f.edge('q', 'f', label='λ , #; λ')
-        ruta = "../img/" + nombre_grafo
+        ruta = "img/" + nombre_grafo
         ruta_imagen = f.render(ruta)
 
         # nombre, alfabeto_pila, lista_terminales, lista_no_Terminales, estado_inicial, ruta_imagen
@@ -126,7 +126,7 @@ class Graphviz:
         f.node('')
 
         if estado == "i":
-            print("EL ESTADO QUE ESTA ES i")
+            #print("EL ESTADO QUE ESTA ES i")
             f.attr('node', shape='circle', fillcolor='green1', style='filled')
             f.node('i', fontsize='30')
             f.attr('node', shape='circle', fillcolor='white', style='filled')
@@ -140,7 +140,7 @@ class Graphviz:
             f.edge('q', 'f', label='λ , #; λ')
         
         elif estado == "p":
-            print("EL ESTADO QUE ESTA ES p")
+            #print("EL ESTADO QUE ESTA ES p")
             f.attr('node', shape='circle', fillcolor='white', style='filled')
             f.node('i', fontsize='30')
             f.attr('node', fillcolor="green1", style='filled')
@@ -219,7 +219,7 @@ class Graphviz:
                 #print("No terminal " + caracter_lectura)
                 
             lista = [caracter_lectura, pop_pila, push_pila]
-            print(caracter_lectura + ", " + pop_pila + "; " + push_pila)
+            #print(caracter_lectura + ", " + pop_pila + "; " + push_pila)
         
         print()
         #print("Los no terminales son ", etiqueta_NT)

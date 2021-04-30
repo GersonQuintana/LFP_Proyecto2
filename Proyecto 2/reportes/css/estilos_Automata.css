@@ -6,7 +6,8 @@
 
 h1 {
     text-align: center;
-    font-size: 40px;
+    font-size: 45px;
+    text-decoration: underline;
 }
 
 #titulo, p {
@@ -21,12 +22,10 @@ p {
 .container {
     margin: 100px auto;
     width: 95%;
-    background-color: blueviolet;
 }
 
 .contenedor {
     margin: 100px 0;
-    background-color: blue;
 }
 
 .info-grafo {

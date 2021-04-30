@@ -179,3 +179,14 @@ D -> e E
 D -> a S A B C
 E -> b e
 *
+
+Gramatica18
+S, A,B,C; a,b, h;S
+S -> a A
+A -> a B
+A -> a
+A -> a A
+B ->  b A
+B -> b B h
+C -> a
+*

@@ -32,3 +32,14 @@
 .contenido > .table > tbody > tr > .izquierda {
     text-align: left;
 }
+
+
+.estado {
+    margin: 100px auto;
+    background-color: greenyellow;
+    text-align: center;
+    font-size: 30px;
+    color: #000;
+    border: 2px solid #000;
+    width: 50%;
+}

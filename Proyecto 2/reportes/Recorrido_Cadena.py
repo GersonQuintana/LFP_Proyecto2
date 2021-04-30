@@ -11,9 +11,9 @@ def realizar_iteracion(ruta_imagen, contenido_pila, entrada, comenzar):
     titulo = ""
 
     ruta_imagen = ruta_imagen.replace("\\", "/")
-    print("La ruta ahora es ", ruta_imagen)
+    # print("La ruta ahora es ", ruta_imagen)
 
-    print(">> La ruta de la imagen es <<", ruta_imagen)
+    # print(">> La ruta de la imagen es <<", ruta_imagen)
 
     if comenzar == 0:
         contador = 0
@@ -40,7 +40,7 @@ def realizar_iteracion(ruta_imagen, contenido_pila, entrada, comenzar):
         file.write(" ")
         file.close()
 
-    print("LA RUTA DE LA IMAGEN ES ", ruta_imagen)
+    #print("LA RUTA DE LA IMAGEN ES ", ruta_imagen)
     contenido = f"""<div class="titulo">
         <h2>Iteración #{str(contador)}</h2>
     </div>

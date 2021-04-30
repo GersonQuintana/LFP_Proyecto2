@@ -34,7 +34,7 @@ def generar_reporte(nombre, alfabeto_pila, terminales, ruta_imagen):
                                 <p><b>Estado inicial =</b> {estado_inicial}</p>
                                 <p><b>Estado de aceptación =</b> {estado_final}</p>
                             </div>
-                            <img src="{ruta_imagen}" alt="">
+                            <img src="../{ruta_imagen}" alt="">
                         </div>
                     </div>"""
     

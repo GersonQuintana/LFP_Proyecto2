@@ -38,3 +38,4 @@ class Lista_Circular:
             if nodo.gramatica.nombre == nombre_gramatica:
                 return nodo.gramatica
             nodo = nodo.siguiente
+            
