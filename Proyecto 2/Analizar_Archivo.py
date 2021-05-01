@@ -4,15 +4,15 @@ from reportes import Reporte_Gramaticas
 class Analizar_Archivo:
 
     def __init__(self, ruta):
-        self.ruta = ruta
+        self.ruta = ruta    # Ruta del archivo  
         self.lista_circular = Lista_Circular.Lista_Circular()
-        self.nombre = ""
-        self.noTerminales = []
-        self.terminales = []
-        self.no_terminal_inicial = ""
-        self.producciones = []
+        self.nombre = ""    # Nombre de la gramatica
+        self.noTerminales = []  # Guarda todos los no terminales de la gramatica
+        self.terminales = []    # Guardara todos los terminales de la gramatica
+        self.no_terminal_inicial = ""   # Guardara el no terminal inicial de la gramatica
+        self.producciones = []  # Se guardaran las producciones de una gramatica
         self.nombres_gramaticas = []    # Guardar todos los nombre de las gramaticas
-        self.contador = 0               # Para guiar que linea de la gramatica estoy 
+        self.estado = 0               # Para guiar que linea de la gramatica estoy 
         self.libre_del_contexto = False  # Para validar que la gramatica sea libre del contexto
         self.gramaticas_no_cargadas = []    # Se guardara el nombre de las gramaticas que no sean libres del contexto
         self.cont_gramaticas_no_cargadas = 0    # Llevara el numero de gramaticas no cargadas
@@ -40,7 +40,6 @@ class Analizar_Archivo:
                         self.gramaticas_no_cargadas.append(self.nombre)
                         self.cont_gramaticas_no_cargadas += 1
 
-                    #print("LOS NO TERMINALES SON ", self.noTerminales)
 
                     # Resetendo todas las variables para podera agregar una nueva gramatica
                     self.nombre = []
@@ -48,7 +47,7 @@ class Analizar_Archivo:
                     self.terminales = []
                     self.no_terminal_inicial = ""
                     self.producciones = []
-                    self.contador = 0
+                    self.estado = 0
                     self.libre_del_contexto = False
 
                 else:
@@ -58,11 +57,11 @@ class Analizar_Archivo:
 
     # Va a ir guardando las listas necesarias para guardar una gramatica
     def estructurar_gramatica(self, linea):
-        if self.contador == 0:              # Estoy leyendo la primera linea de la estructura de la gramatica: LEER EL NOMBRE DE LA GRAMATICA
+        if self.estado == 0:              # Estoy leyendo la primera linea de la estructura de la gramatica: LEER EL NOMBRE DE LA GRAMATICA
             self.nombre = linea.strip()
-            self.contador += 1
+            self.estado = 1
         
-        elif self.contador == 1:            # Estoy leyendo la segunda linea de la estructura de la gramatica: LEER 'NO TERMINALES', 'TERMINALES' Y 'NO TERMINAL INICIAL'
+        elif self.estado == 1:            # Estoy leyendo la segunda linea de la estructura de la gramatica: LEER 'NO TERMINALES', 'TERMINALES' Y 'NO TERMINAL INICIAL'
             
             lista = linea.split(";")        # Separandolos por el ';'
             # Se creara un lista con 3 posiciones
@@ -71,9 +70,9 @@ class Analizar_Archivo:
             lista[1] = self.limpiar_Cadena(lista[1])
             self.terminales = lista[1].split(",")
             self.no_terminal_inicial = lista[2].strip()
-            self.contador += 1
+            self.estado = 2
         
-        else:                               # Estoy leyendo las lineas que siguen: LEER PRODUCCIONES
+        elif self.estado == 2:                               # Estoy leyendo las lineas que siguen: LEER PRODUCCIONES
             self.producciones.append(linea.strip())
 
             lista = linea.strip().split("->")
@@ -106,7 +105,6 @@ class Analizar_Archivo:
                 print("", end="")
             else:
                 self.libre_del_contexto = True                              # Significa que es una gramatica libre del contexoto
-            
     
     def getNombres_Gramaticas(self):
         return self.nombres_gramaticas

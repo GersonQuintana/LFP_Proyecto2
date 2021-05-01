@@ -187,6 +187,6 @@ A -> a B
 A -> a
 A -> a A
 B ->  b A
-B -> b B h
+B -> B h
 C -> a
 *

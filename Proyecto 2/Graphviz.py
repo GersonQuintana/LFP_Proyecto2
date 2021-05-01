@@ -50,7 +50,6 @@ class Graphviz:
 
         nombre_grafo = "AP_" + self.gramatica.nombre + ".dot"
         f = Digraph('grafo', filename=nombre_grafo, node_attr={'height': '1.1', 'fontsize':"18"}, format='png')
-        #s.attr(bgcolor='white', fontcolor='white')
         f.attr(rankdir="LR", diredgeconstraints="True")
 
         no_terminal_inicial = self.gramatica.NoTerminalInicial
@@ -63,7 +62,6 @@ class Graphviz:
         f.attr('node', shape='doublecircle')
         f.node('f', fontsize='30')
         f.attr('node', shape='circle')
-        #f.edge("estado actual", "estado al que va", label="caracter en lectura, pop pila; push pila")
         f.edge('', 'i', label="")
         f.edge('i', 'p', label='λ , λ; #')
         f.edge('p', 'q', label='λ , λ; '+ "S")
@@ -82,19 +80,13 @@ class Graphviz:
 
             if caracter_lectura in self.listaTerminales and pop_pila in self.listaTerminales:   # Para ponerlo arriba del estado 
                 etiqueta_T += caracter_lectura + ", " + pop_pila + "; " + push_pila + "\n"
-                #print("terminal " + caracter_lectura)
             else:                                                                               # Para ponerlo abajo del estado
                 etiqueta_NT += caracter_lectura + ", " + pop_pila + "; " + push_pila + "\n" # Etiqueta para los no terminales
-                #print("No terminal " + caracter_lectura)
                 
             lista = [caracter_lectura, pop_pila, push_pila]
             self.transisiones_automata.append(lista)
-            #print(caracter_lectura + ", " + pop_pila + "; " + push_pila)
         
-        print()
-        #print("Los no terminales son ", etiqueta_NT)
         f.edge('q', 'q', label=etiqueta_NT)
-        #print("Terminales son ", etiqueta_T)
         f.edge('q', 'q:s', label=etiqueta_T)
         f.edge('q', 'f', label='λ , #; λ')
         ruta = "img/" + nombre_grafo
@@ -117,7 +109,6 @@ class Graphviz:
         nombre_grafo = "AP_" + self.gramatica.nombre + str(self.count) + ".dot"
         self.count += 1
         f = Digraph('grafo', filename=nombre_grafo, node_attr={'height': '1.1', 'fontsize':"18"}, format='png')
-        #s.attr(bgcolor='white', fontcolor='white')
         f.attr(rankdir="LR", diredgeconstraints="True")
 
         no_terminal_inicial = self.gramatica.NoTerminalInicial
@@ -126,7 +117,6 @@ class Graphviz:
         f.node('')
 
         if estado == "i":
-            #print("EL ESTADO QUE ESTA ES i")
             f.attr('node', shape='circle', fillcolor='green1', style='filled')
             f.node('i', fontsize='30')
             f.attr('node', shape='circle', fillcolor='white', style='filled')
@@ -140,7 +130,6 @@ class Graphviz:
             f.edge('q', 'f', label='λ , #; λ')
         
         elif estado == "p":
-            #print("EL ESTADO QUE ESTA ES p")
             f.attr('node', shape='circle', fillcolor='white', style='filled')
             f.node('i', fontsize='30')
             f.attr('node', fillcolor="green1", style='filled')
@@ -221,7 +210,6 @@ class Graphviz:
             lista = [caracter_lectura, pop_pila, push_pila]
             #print(caracter_lectura + ", " + pop_pila + "; " + push_pila)
         
-        print()
         #print("Los no terminales son ", etiqueta_NT)
         f.edge('q', 'q', label=etiqueta_NT)
         f.edge('q', 'q:s', label=etiqueta_T)        
@@ -266,75 +254,4 @@ class Graphviz:
             else:
                 cadena += lista[i] + ", "
         return cadena
-
-
-                                
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                # if pila[0] in self.listaNoTerminales:
-                #     posiciones = []
-                #     cad = ""
-                #     for i in range(len(transiciones)):
-                #         cad = transiciones[i][2]
-
-                #         if transiciones[i][1] == pila[0] and cad[0] == caracter:
-                #             posiciones.append(i)
-
-                #     cade = ""
-
-                #     for j in range(len(posiciones)):
-                #         for k in range(pos, len_cadena):
-                #             cade += cadena[k]
-                #         pila.pop(0)
-                        
-                #         cadena1 = transiciones[j][2]
-                #         cadena2 = ""
-                        
-                #         print("La cadena1 es " + cade)
-                #         for l in range(len(cadena1)):
-                #             if cadena1[l + 1] == " " or cadena1[l +1] == None or cadena1[l + 1] == "\t" and l != 0:
-                #                 print("La cadena2 es (" + cadena2 + ")")
-                #                 pila.insert(0, cadena2)
-                #                 cadena2 = ""
-                #             else:
-                #                 cadena2 += cadena1[l]
-                        
-                #         op = self.automata_de_pila(cadena=cade, state="q", pos=pos, Pila=pila)
-                #         if op == True:
-                #             return
-                #         pila = self.pila_original
-                
-                # elif pila[0] in self.listaTerminales:
-                #     pos = pos + 1
-
-
-
-
-
-
-
-
-
-
-                    
-
-
-
     

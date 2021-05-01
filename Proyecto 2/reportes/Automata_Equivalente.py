@@ -38,7 +38,6 @@ def generar_reporte(nombre, alfabeto_pila, terminales, ruta_imagen):
                         </div>
                     </div>"""
     
-    #print("La ruta es ", ruta_imagen)
     
     archivo = open("reportes/Automata_Equivalente.html", "w", encoding="UTF-8")
     documento = inicio_html + contenido + fin_html

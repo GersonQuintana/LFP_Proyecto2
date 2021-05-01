@@ -186,9 +186,9 @@ while opcion != 6:
         print("\n\n\n################### Menú Principal #####################\n"
               "#      1. Cargar archivo                               #\n"
               "#      2. Mostrar información general de la gramática  #\n"
-              "#      3. Generar autómata de pila equivalenete        #\n"
+              "#      3. Generar autómata de pila equivalente         #\n"
               "#      4. Reporte de recorrido                         #\n"
-              "#      5. Reporte en tabal                             #\n"
+              "#      5. Reporte en tabla                             #\n"
               "#      6. Salir                                        #\n"
               "########################################################\n")
 
@@ -214,7 +214,7 @@ while opcion != 6:
     if opcion == 1:
         # root = Tk()
         # print("> Cargando archivo de menú...")
-        # ruta_menu = FileDialog.askopenfilename(title="Abrir fichero", filetypes=(("txt files","*.glc"),("todos los archivos","*.*")))
+        # ruta = FileDialog.askopenfilename(title="Abrir fichero", filetypes=(("txt files","*.glc"),("todos los archivos","*.*")))
         # root.destroy()
         ruta = "entrada.glc"
 
@@ -226,10 +226,10 @@ while opcion != 6:
             analizar_archivo.analizar_file()
             gramaticas_no_cargadas = analizar_archivo.getGramaticas_no_cargadas()
 
-            # if gramaticas_no_cargadas != 0:
-            #     opcion = input("> Algunas gramáticas no se cargaron.¿Desea ver el reporte? (s/n): ")
-            #     if opcion.lower() == "s":
-            #         os.system("reportes\\Reporte.html")
+            if gramaticas_no_cargadas != 0:
+                opcion = input("> Algunas gramáticas no se cargaron.¿Desea ver el reporte? (s/n): ")
+                if opcion.lower() == "s":
+                    os.system("reportes\\Reporte_Gramaticas.html")
 
         else:
             print("\n---------------------------------------------------------------")
@@ -286,38 +286,42 @@ while opcion != 6:
         print()
 
         try:
+            if len(automatas_de_pila) != 0:
+                opcion_automata = int(input("Ingrese el número correspondiente a la gramática: "))
+                cadena = input("Ingrese una cadena: ")
 
-            opcion_gramatica = int(input("Ingrese el número correspondiente a la gramática: "))
-            cadena = input("Ingrese una cadena: ")
+                if opcion_gramatica > 0 and opcion_automata <= len_automatas_de_pila:
 
-            if opcion_gramatica > 0 and opcion_gramatica <= len_nombres_gramaticas:
-
-                # Donde se guardaran las posiciones que ya fueron obtenidas
-                nombre_gramatica = nombres_gramaticas[opcion_gramatica-1]
-                gramatica = analizar_archivo.obtener_objeto_gramatica(nombre_gramatica)
-                grafo = Graphviz.Graphviz(gramatica)
-                grafo.generar_funciones()
-                grafo.generar_grafo(False)
-                transiciones = grafo.getTransiciones()
-                no_terminal_inicial = grafo.getNoTerminalInicial()
-                terminales = grafo.getTerminales()
-                no_terminales = grafo.getNoterminales()
+                    # Donde se guardaran las posiciones que ya fueron obtenidas
+                    nombre_gramatica = automatas_de_pila[opcion_automata-1]
+                    gramatica = analizar_archivo.obtener_objeto_gramatica(nombre_gramatica)
+                    grafo = Graphviz.Graphviz(gramatica)
+                    grafo.generar_funciones()
+                    grafo.generar_grafo(False)
+                    transiciones = grafo.getTransiciones()
+                    no_terminal_inicial = grafo.getNoTerminalInicial()
+                    terminales = grafo.getTerminales()
+                    no_terminales = grafo.getNoterminales()
 
 
-                recorrido, razon = Automata_de_Pila.analizar_Cadena(grafo, cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
+                    recorrido, razon = Automata_de_Pila.analizar_Cadena(grafo, cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
 
-                if recorrido == True:   # La cadena fue valida
-                    file = open("reportes/Recorrido_Cadena.html","a", encoding="UTF-8")
-                    file.write("\n\t<div class=\"estado\">¡La cadena ingresada es válida!</div>\n\t</body>\n</html>\n")
-                else:   # La cadena no fue valida
-                    file = open("reportes/Recorrido_Cadena.html","a", encoding="UTF-8")
-                    file.write("\n\t<div class=\"estado\">CADENA NO VÁLIDA.\n" + razon + "</div>\n\t</body>\n</html>\n")
-                file.close()
-                os.system("reportes\\Recorrido_Cadena.html")
+                    if recorrido == True:   # La cadena fue valida
+                        file = open("reportes/Recorrido_Cadena.html","a", encoding="UTF-8")
+                        file.write("\n\t<div class=\"estado\">¡La cadena ingresada es válida!</div>\n\t</body>\n</html>\n")
+                    else:   # La cadena no fue valida
+                        file = open("reportes/Recorrido_Cadena.html","a", encoding="UTF-8")
+                        file.write("\n\t<div class=\"estado\">CADENA NO VÁLIDA.\n" + razon + "</div>\n\t</body>\n</html>\n")
+                    file.close()
+                    os.system("reportes\\Recorrido_Cadena.html")
 
+                else:
+                    print("\n--------------------------------------------------------")
+                    print("Únicamente puede eligir entre las opciones disponibles.")
+                    print("--------------------------------------------------------")
             else:
                 print("\n--------------------------------------------------------")
-                print("Únicamente puede eligir entre las opciones disponibles.")
+                print("Debe generar antes un autómata de pila equivalente.")
                 print("--------------------------------------------------------")
 
         except ValueError:
@@ -328,53 +332,56 @@ while opcion != 6:
         
 
     elif opcion == 5:
-        # Obteniendo la lista que tiene el nombre de todas las gramaticas que estan en el archivo de entrada
-        nombres_gramaticas = analizar_archivo.getNombres_Gramaticas()
+        
         # Tamaño de la lista de nombres
-        len_nombres_gramaticas = len(nombres_gramaticas)
+        len_automatas_de_pila = len(automatas_de_pila)
         # Guardara lo que esta al lado derecho de cada produccion
         expresion = ""
 
         print("\n---------- Gramáticas Cargadas -------------\n")
-        for i in range(len_nombres_gramaticas):
-            print("  " + str(i+1) + ". " + nombres_gramaticas[i])
+        for i in range(len_automatas_de_pila):
+            print("  " + str(i+1) + ". " + automatas_de_pila[i])
         print()
 
         try:
+            if len(automatas_de_pila) != 0:
+                opcion_automata = int(input("Ingrese el número correspondiente a al autómata: "))
+                cadena = input("Ingrese una cadena: ")
 
-            opcion_gramatica = int(input("Ingrese el número correspondiente a la gramática: "))
-            cadena = input("Ingrese una cadena: ")
+                if opcion_gramatica > 0 and opcion_automata <= len_automatas_de_pila:
 
-            if opcion_gramatica > 0 and opcion_gramatica <= len_nombres_gramaticas:
+                    # Donde se guardaran las posiciones que ya fueron obtenidas
+                    nombre_gramatica = automatas_de_pila[opcion_automata-1]
+                    gramatica = analizar_archivo.obtener_objeto_gramatica(nombre_gramatica)  # Retorna el objeto 'gramatica'
+                    grafo = Graphviz.Graphviz(gramatica)
+                    grafo.generar_funciones()
+                    grafo.generar_grafo(False)
+                    transiciones = grafo.getTransiciones()
+                    no_terminal_inicial = grafo.getNoTerminalInicial()
+                    terminales = grafo.getTerminales()
+                    no_terminales = grafo.getNoterminales()
 
-                # Donde se guardaran las posiciones que ya fueron obtenidas
-                nombre_gramatica = nombres_gramaticas[opcion_gramatica-1]
-                gramatica = analizar_archivo.obtener_objeto_gramatica("Grm1")  # Retorna el objeto 'gramatica'
-                grafo = Graphviz.Graphviz(gramatica)
-                grafo.generar_funciones()
-                grafo.generar_grafo(False)
-                transiciones = grafo.getTransiciones()
-                no_terminal_inicial = grafo.getNoTerminalInicial()
-                terminales = grafo.getTerminales()
-                no_terminales = grafo.getNoterminales()
+                    recorrido, razon = Automata_de_Pila.analizar_Cadena_con_tabla(grafo, cadena, transiciones, terminales, no_terminales, no_terminal_inicial)
 
-                recorrido, razon = Automata_de_Pila.analizar_Cadena_con_tabla(grafo, "abzba", transiciones, terminales, no_terminales, no_terminal_inicial)
+                    if recorrido == True:
+                        file = open("reportes/Reporte_Tabla.html", "a", encoding="UTF-8")
+                        fin_HTML = """</tbody>\n</thead>\n</table>\n</div>\n\t<div class=\"estado\">¡La cadena ingresada es válida!</div>\n\t"""
+                        file.write(fin_HTML)
+                    else:
+                        file = open("reportes/Reporte_Tabla.html", "a", encoding="UTF-8")
+                        fin_HTML = "</tbody>\n</thead>\n</table>\n</div>\n\t<div class=\"estado\">CADENA NO VÁLIDA.\n" + razon + "</div>\n\t"
+                        file.write(fin_HTML)
+                    file.close()
 
-                if recorrido == True:
-                    file = open("reportes/Reporte_Tabla.html", "a", encoding="UTF-8")
-                    fin_HTML = """</tbody>\n</thead>\n</table>\n</div>\n\t<div class=\"estado\">¡La cadena ingresada es válida!</div>\n\t"""
-                    file.write(fin_HTML)
+                    os.system("reportes\\Reporte_Tabla.html")
+
                 else:
-                    file = open("reportes/Reporte_Tabla.html", "a", encoding="UTF-8")
-                    fin_HTML = "</tbody>\n</thead>\n</table>\n</div>\n\t<div class=\"estado\">CADENA NO VÁLIDA.\n" + razon + "</div>\n\t"
-                    file.write(fin_HTML)
-                file.close()
-
-                os.system("reportes\\Reporte_Tabla.html")
-
+                    print("\n--------------------------------------------------------")
+                    print("Únicamente puede eligir entre las opciones disponibles.")
+                    print("--------------------------------------------------------")
             else:
                 print("\n--------------------------------------------------------")
-                print("Únicamente puede eligir entre las opciones disponibles.")
+                print("Debe generar antes un autómata de pila equivalente.")
                 print("--------------------------------------------------------")
 
         except ValueError:

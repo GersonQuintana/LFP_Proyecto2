@@ -19,6 +19,7 @@ A -> C a
 B -> C b
 """
 
+
 from time import sleep
 
 transiciones_i = []
@@ -28,6 +29,8 @@ objeto_grafo = None
 
 
 # Transiciones de la forma: [['λ', 'S', 'z M N z'], ['λ', 'M', 'a M a'], ['b', 'b', 'λ'], ['z', 'z', 'λ']]
+
+
 def analizar_Cadena(obj_grafo, cadena, transiciones, terminales, no_terminales, no_terminal_inicial):
 
     global transiciones_i
@@ -53,7 +56,6 @@ def analizar_Cadena(obj_grafo, cadena, transiciones, terminales, no_terminales, 
         # Obteniendo la cadena que se esta leyendo
         for i in range(n, len(cadena)):
             cadena_i += cadena[i]
-        print(cadena_i)
         #sleep(0.5)
 
         if estado == "i":
@@ -209,13 +211,8 @@ def analizar_Cadena(obj_grafo, cadena, transiciones, terminales, no_terminales, 
                                 pila.pop(0)
                                 pila = lista_expresion + pila
                                 break
-                            
-                            # Si no se cumple lo anterior, y solo esta el caracter que se esta leyendo, solo lo inserto. En este caso solo se guarda por si ya terminó el ciclo y no se encontro
-                            # una produccion que tuviera dos o mas terminales o no terminales
-                            elif len(lista_expresion) == 1: 
-                        
-                                respaldo = lista_expresion[0]
-                            
+
+
                             # Si ya se termino de recorrer la lista de posiciones que tienen las expresiones que comienzan con el caracter que estoy leyendo y no entro a ninguno de los anteriores, 
                             # entonces que inserte a la lista la produccion que solo tenia como expresion el caracter que esoy leyendo (ej. A --> z)
                             if contador == len(pos_inicioTerminal):
@@ -298,7 +295,6 @@ def analizar_Cadena(obj_grafo, cadena, transiciones, terminales, no_terminales, 
                         objeto_grafo.realizarRecorrido("q", char, pila, transicion, 1)
                         pila.pop(0)
                     else:
-                        print("LA CADENA NO ES ACEPTADA")
                         return False, "No se encontró producción que inicie con el caracter en lectura."
             
             # Si lo que esta en la cima de la pila es un no terminal
@@ -318,9 +314,6 @@ def analizar_Cadena(obj_grafo, cadena, transiciones, terminales, no_terminales, 
                         objeto_grafo.realizarRecorrido("f", " ", "#", transicion, 1)
                         transicion = "λ, #; λ"
                         objeto_grafo.realizarRecorrido("f", " ", " ", transicion, 1)
-                        # print("El contenido de la pila es ", pila)
-                        # print("N == ", n)
-                        # print("LA CADENA ES ACEPTADA")
                         return True, " "
             
                 
@@ -328,12 +321,10 @@ def analizar_Cadena(obj_grafo, cadena, transiciones, terminales, no_terminales, 
 
         # Si la pila esta vacia, aun no se ha leido la cadena y por lo menos ya se leyo un caracter de la cadena
         if pila[0] == "#" and n != len(cadena) and n != 0:
-            print("LA CADENA NO ES ACEPTADA")
             return False, "La pila quedaría vacía pero aún no se lee por campleto la cadena."
         
         # Si ya se termino de leer la cadena y la pila todavia no esta vacia
         elif n == len(cadena) and pila[0] != "#":
-            print("LA CADENA NO ES ACEPTADA")
             return False, "La cadena ha sido leía pero la pila no está vacía."
         # print("Ultimo")
 
@@ -366,9 +357,11 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
     pila = []
     respaldo = ""
     transicion = ""
+    cont_general = 0
     
 
     while n < len(cadena):
+        print("repeat")
 
         char = cadena[n]
         # print("--------------------------------------")
@@ -380,8 +373,8 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
 
         for i in range(n, len(cadena)):
             cadena_i += cadena[i]
-        print(cadena_i)
-        sleep(0.5)
+        # print(cadena_i)
+        # sleep(0.5)
 
         # (q,λ,B;q,bBb)
         if estado == "i":
@@ -446,6 +439,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                 reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                 pila.pop(0)
                                 pila = lista_expresion + pila
+                                cont_general = 0
                                 break
                             # count = count + 1
 
@@ -467,6 +461,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                 reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                 pila.pop(0)
                                 pila = lista_expresion + pila
+                                cont_general = 0
                                 break
 
                     
@@ -494,6 +489,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                     reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                     pila.pop(0)
                                     pila = lista_expresion + pila
+                                    cont_general = 0
                                     break
                             
                             # Si lo que lo que la cima tiene justo abajo es igual al siguiente caracter de la cadena, 
@@ -514,6 +510,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                     reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                     pila.pop(0)
                                     pila = lista_expresion + pila
+                                    cont_general = 0
                                     break
                                 
                                 # Si en el lado derecho de la produccion es de longitud 2 o mas y no hay ningun terminal dentro de la lista, 
@@ -530,6 +527,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                 reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                 pila.pop(0)
                                 pila = lista_expresion + pila
+                                cont_general = 0
                                 break
                             
                             # Si no se cumple lo anterior, y solo esta el caracter que se esta leyendo, solo lo inserto. En este caso solo se guarda por si ya terminó el ciclo y no se encontro
@@ -545,6 +543,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                 reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                 pila.pop(0)
                                 pila = lista_expresion + pila
+                                cont_general = 0
                                 break
                                 
                             # El siguiente caso aplica solo cuando se encuentra una produccion que inicia con el caracter que estoy leyendo. Se debe de insertar si o si, ya que no hay mas opciones
@@ -553,6 +552,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                 reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                 pila.pop(0)
                                 pila = lista_expresion + pila
+                                cont_general = 0
                                 break
                     
 
@@ -593,6 +593,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                 pila.pop(0)
                                 lista_expresion = str_a_lista(derecha_produccion)
                                 pila = lista_expresion + pila
+                                cont_general = 0
                                 break
                         
                         #print("lista_expresiones == ", lista_expresion)
@@ -611,6 +612,7 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                                     reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                                     pila.pop(0)
                                     pila = productions + pila
+                                    cont_general = 0
                                     break
 
 
@@ -621,8 +623,8 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                         transicion = "(q, λ, λ; q, λ)"
                         reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
                         pila.pop(0)
+                        cont_general = 0
                     else:
-                        print("LA CADENA NO ES ACEPTADA")
                         return False, "No se encontró producción que inicie con el caracter en lectura."
             
             # Si lo que esta en la cima de la pila es un no terminal
@@ -632,35 +634,33 @@ def analizar_Cadena_con_tabla(obj_grafo, cadena, transiciones, terminales, no_te
                 if pila[0] == char:
                     transicion = "(q, " + pila[0] + ", " + pila[0] + "; q, λ)"
                     reporte_tabla.realizar_fila(pila, char, transicion, cadena_i)
-                    #print("Se consumio " + pila[0])
                     pila.pop(0)
                     n = n + 1
+                    cont_general = 0
 
                     # ESTADO DE ACEPTACION
                     if pila[0] == "#" and n == len(cadena):
                         transicion = "(q, λ, #; f, λ)"
                         reporte_tabla.realizar_fila(pila, char, transicion, "λ")
                         reporte_tabla.realizar_fila("λ", "λ", "f", "λ")
-                        # print("El contenido de la pila es ", pila)
-                        # print("N == ", n)
-                        # print("LA CADENA ES ACEPTADA")
+                        cont_general = 0
                         return True, " "
             
                 
         # CAMBIAR LAS CONDICIONES 
+        cont_general = cont_general + 1
 
         # Si la pila esta vacia, aun no se ha leido la cadena y por lo menos ya se leyo un caracter de la cadena
         if pila[0] == "#" and n != len(cadena) and n != 0:
-            print("LA CADENA NO ES ACEPTADA")
             return False, "La pila quedaría vacía pero aún no se lee por campleto la cadena."
         
         # Si ya se termino de leer la cadena y la pila todavia no esta vacia
         elif n == len(cadena) and pila[0] != "#":
-            print("LA CADENA NO ES ACEPTADA")
             return False, "La cadena ha sido leía pero la pila no está vacía."
-        # print("Ultimo")
+        
+        elif cont_general == 1000:
+            return False, "No se encontró producción que cumpla con la cadena."
 
-        # print("n llego hasta ", n)
 
 
 
@@ -682,13 +682,10 @@ def buscar_producciones_con_caracter(no_terminal, caracter):
     for i in range(len(transiciones_i)):
 
         if transiciones_i[i][1] == no_terminal:
-            #print("SON IGUALES " + transiciones_i[i][1] + " == " + no_terminal)
 
             expresion = transiciones_i[i][2]
 
             if expresion[0] == caracter:
-                print("LA EXPRESION ES ", expresion)
-                print("Lo que tiene la expresion en 0: " + expresion[0])
                 producciones.append(transiciones_i[i][2])
 
     return producciones
@@ -703,9 +700,8 @@ def buscar_transicion(no_terminal, produccion):
             return transiciones_i[i]
 
 
-def buscar_producciones_con_no_terminal(no_terminal, caracter):
 
-    print("Entro con ", no_terminal)
+def buscar_producciones_con_no_terminal(no_terminal, caracter):
 
     global transiciones_i, no_terminales_ing
     reemplazar_por = []
@@ -714,11 +710,8 @@ def buscar_producciones_con_no_terminal(no_terminal, caracter):
     for i in range(len(transiciones_i)):
 
         if transiciones_i[i][1] == no_terminal:
-
             expresion = transiciones_i[i][2]
-
             if expresion[0] in no_terminales_ing:
-
                 producciones = buscar_producciones_con_caracter(no_terminal, caracter)
 
                 if len(producciones) != 0:
