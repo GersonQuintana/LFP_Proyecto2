@@ -11,7 +11,6 @@ import Automata_de_Pila
 
 
 def mostrar_Informacion():
-    # Sustituir por el nombre del programa
     print("\n\n------------------------- Proyecto 2 - LFP -------------------------")
     print("Lenguajes Formales y de Programación,  sección B+")
     print("Gerson Sebastian Quintana Berganza, 201908686")
@@ -22,7 +21,6 @@ def cuenta_Regresiva():
     cuenta = ""
     i = 5
     while i >= 0:
-        # Si ya es la ultima vez que entra al ciclo que no imprima una ',' sino '...'
         if i == 0:
             cuenta += str(i)
             print(cuenta + " ", end="...")
@@ -88,6 +86,7 @@ def mostrar_informacion_gramaticas():
 
             # Buscando el nodo de la lista circular con el nombre de la gramatica
             gramatica = analizar_archivo.obtener_objeto_gramatica(nombre_gramatica)
+
             # Obteniendo todas las producciones de la gramatica que se acaba de buscar (devuelve una lista)
             producciones = gramatica.listaProducciones
             nombre_gramatica = gramatica.nombre
@@ -96,7 +95,6 @@ def mostrar_informacion_gramaticas():
             no_terminal_inicial = gramatica.NoTerminalInicial
             terminales = ""
             no_terminales = ""
-            #print("La lista de  terminales: ", lista_terminales)
             terminales = estructurar_Lista_Terminales(lista_terminales)
             no_terminales = estructurar_Lista_No_Terminales(lista_no_terminales)
 
@@ -112,6 +110,7 @@ def mostrar_informacion_gramaticas():
             # Este for obtendra lo que esta al lado izquierdo de la produccion y lo compara con todas las partes
             # izquierdas de las producciones de todas las gramaticas para ver cuales son iguales
             for j in range(len(producciones)):
+
                 produccion = producciones[j]
                 # Separando cada produccion
                 lista = produccion.split("->")
@@ -177,10 +176,10 @@ automatas_de_pila = []
 
 
 while opcion != 6:
-    # if contador == 0:
-    #     mostrar_Informacion()
-    #     cuenta_Regresiva()
-    #     contador = 1
+    if contador == 0:
+        mostrar_Informacion()
+        cuenta_Regresiva()
+        contador = 1
 
     try:
         print("\n\n\n################### Menú Principal #####################\n"
@@ -212,11 +211,10 @@ while opcion != 6:
         opcion = 0
 
     if opcion == 1:
-        # root = Tk()
-        # print("> Cargando archivo de menú...")
-        # ruta = FileDialog.askopenfilename(title="Abrir fichero", filetypes=(("txt files","*.glc"),("todos los archivos","*.*")))
-        # root.destroy()
-        ruta = "entrada.glc"
+        root = Tk()
+        print("> Cargando archivo de menú...")
+        ruta = FileDialog.askopenfilename(title="Abrir fichero", filetypes=(("txt files","*.glc"),("todos los archivos","*.*")))
+        root.destroy()
 
         if ruta != "":
 
@@ -345,7 +343,7 @@ while opcion != 6:
 
         try:
             if len(automatas_de_pila) != 0:
-                opcion_automata = int(input("Ingrese el número correspondiente a al autómata: "))
+                opcion_automata = int(input("Ingrese el número correspondiente al autómata: "))
                 cadena = input("Ingrese una cadena: ")
 
                 if opcion_gramatica > 0 and opcion_automata <= len_automatas_de_pila:

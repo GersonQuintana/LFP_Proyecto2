@@ -99,9 +99,6 @@ class Analizar_Archivo:
             elif contador_terminales == 1 and contador_no_terminales == 0:  # Significa que esta produccion no pertenece a una gramatica regular
                 print("", end="")
             elif contador_terminales == 0 and contador_no_terminales == 0:  # Significa que no se reconocio ningun terminal o no terminal definido al principio de la gramatica
-                # print("Los caracteres no forman parte del alfabeto")
-                # print(self.nombre)
-                # print(caracter)
                 print("", end="")
             else:
                 self.libre_del_contexto = True                              # Significa que es una gramatica libre del contexoto
